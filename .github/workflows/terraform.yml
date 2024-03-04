@@ -1,7 +1,13 @@
 name: "Terraform"
 
 on:
-  
+  workflow_dispatch:
+    inputs:
+      terraform_action:
+        type: choice
+        description: select terraform action
+        options:
+        - apply
   pull_request:
     types: [opened, reopened]
 
@@ -33,6 +39,7 @@ jobs:
         run: terraform plan -no-color
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        if: ${{ github.event.inputs.terraform_action == 'apply' }}
+        run: ${{ github.event.inputs.terraform_action }}
         
           
