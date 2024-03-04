@@ -22,5 +22,14 @@ resource "aws_s3_bucket" "s3" {
   }
 }
 
+resource "aws_s3_bucket" "s3-bucket" {
+  bucket = "aws-s3-github-actions-mb-2"
+
+  tags = {
+    Name        = "Testing bucket"
+    Environment = "Dev"
+  }
+}
+
 
 
