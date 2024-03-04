@@ -40,6 +40,6 @@ jobs:
 
       - name: Terraform Apply
         if: ${{ github.event.inputs.terraform_action == 'apply' }}
-        run: ${{ github.event.inputs.terraform_action }}
+        run: terraform apply --auto-approve
         
           
