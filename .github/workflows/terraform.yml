@@ -8,9 +8,9 @@ on:
         description: select terraform action
         options:
         - apply
-        required: true
+        #required: true
   pull_request:
-    types: [opened, reopened]
+    types: opened
 
 jobs:
   terraform:
