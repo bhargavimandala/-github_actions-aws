@@ -10,7 +10,7 @@ on:
         - apply
         required: true
   pull_request:
-    types: [closed]
+    types: [opened]
     branches:
       - main
 
@@ -46,11 +46,11 @@ jobs:
         run: terraform apply --auto-approve
 
  
-  if_merged:
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo The PR was successfully merged.      
+  # if_merged:
+  #   if: github.event.pull_request.merged == true
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - run: |
+  #       echo The PR was successfully merged.      
         
           
