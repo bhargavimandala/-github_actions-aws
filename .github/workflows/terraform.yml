@@ -11,8 +11,9 @@ on:
         required: true
   pull_request:
     types: [opened]
+  push:
     branches:
-      - main
+      - main  
 
 jobs:
   terraform:
@@ -40,17 +41,13 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color
+        if: github.event_name == 'pull_request'
 
       - name: Terraform Apply
-        if: ${{ github.event.inputs.terraform_action == 'apply' }}
+        if: ${{ github.event.inputs.terraform_action == 'apply' && github.ref == 'refs/heads/main' && github.event_name == 'push'}}
         run: terraform apply --auto-approve
 
  
-  # if_merged:
-  #   if: github.event.pull_request.merged == true
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - run: |
-  #       echo The PR was successfully merged.      
+       
         
           
