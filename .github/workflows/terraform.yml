@@ -8,9 +8,9 @@ on:
         description: select terraform action
         options:
         - apply
-        #required: true
+        required: true
   pull_request:
-    types: opened
+    types: [opened]
 
 jobs:
   terraform:
@@ -41,6 +41,6 @@ jobs:
 
       - name: Terraform Apply
         if: ${{ github.event.inputs.terraform_action == 'apply' }}
-        run: terraform apply --auto-approve
+        run: terraform apply
         
           
